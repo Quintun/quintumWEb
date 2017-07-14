@@ -3,52 +3,7 @@ var yo = require('yo-yo');
 var login= yo`
   <div id = "containerHomeContent">
     <div  class="row">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-    <ul id="slide-out" class="side-nav">     
-      <li>
-        <div class="userView">
-          <div class="background">
-            <img src="header.png">
-          </div>
-          <a><img href="#!" id= "btnExit" src="btnExit.png"></a>
-          <a><img class="circle" src="adminIcon.png"></a>
-          <a><span class="white-text name">Admin</span></a> 
-          <a><span class="white-text email">admin@gmail.com</span></a>
-        </div>
-      </li>
-      <li id="itemMenuTitulo">
-        <a id="itemMenuTituloLabel" href="#!">MENU</a>
-      </li>
-      <li id="itemMenuList">
-        <a>PLANTAS</a>
-      </li>
-      <li id="itemMenuList">
-        <a>FAENAS</a>
-      </li>
-      <li id="itemMenuList">
-        <a>PLANTA PLANTS</a>
-      </li>
-      <li id="itemMenuList">
-        <a>PABELLON LAYOUTS</a>
-      </li>
-      <li id="itemMenuList">
-        <a>CONFIGURAR PLANTA</a>
-      </li>
-      <li id="itemMenuList">
-        <a>SUB-SISTEMA GENERACIÓN</a>
-      </li>
-      <li id="itemMenuList">
-        <a>IQ</a>
-      </li>
-      <li id="itemMenuList">
-        <a>QUIZ REQUEST</a>
-      </li>
-      <li id="itemMenuList">
-        <a>RESULTADO CUESTIONARIO</a>
-      </li>
-    </ul>  
-
-
+    
         <div id="colBusqueda" class=" col s12">
           <div id = "containerBusqueda" class="container ">
             <div id = "busqueda" class="row">
@@ -58,23 +13,23 @@ var login= yo`
                    </div>
                  </div> 
                  <div  class="col s6 m2 center-align">
-                    <a id = "buscarBtnHome" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
+                    <a id = "buscarBtnHome" class="btn-floating btn-large"><i class="material-icons">search</i></a>
                  </div> 
                  <div class="col s6 m2 center-align">
-                    <a id = "homeAdminAdd" class="btn-floating btn-large waves-effect waves-light red" ><i class="material-icons">add</i></a>
+                    <a id = "homeAdminAdd" class="btn-floating btn-large" ><i class="material-icons">add</i></a>
                  </div>  
                  <div class="col s6 m3 offset-m4 center-align">
                    
                       <p class="radioButonItems" >
-                        <input name="group1" type="radio" id="test1" />
-                        <label for="test1">Personas</label>
+                        <input name="group1" type="radio" id="radio1" />
+                        <label for="radio1">Personas</label>
                       </p>
                  </div>  
                  <div class="col s6 m3 center-align">
 
                       <p class="radioButonItems" >
-                        <input name="group1" type="radio" id="test2" />
-                        <label for="test2">Cliente</label>
+                        <input name="group1" type="radio" id="radio2" />
+                        <label for="radio2">Cliente</label>
                       </p>
                  
                  </div> 

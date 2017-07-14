@@ -13,6 +13,14 @@ require('./historianIqDoctor');
 require('./registro');
 require('./reestablecer');
 require('./recuperarClave');
+require('./layoutAdmin');
+require('./clienteAdmin');
+require('./pacienteAdmin');
+require('./plantaAdmin');
+require('./roomAdmin');
+require('./tablaAdmin');
+
+
 //require('./clienteAdmin/crearClienteAdmin');
 
 page(); 

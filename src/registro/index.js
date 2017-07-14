@@ -33,6 +33,11 @@ page('/registro',function(ctx,next){
 	    }
 	}
 
+	$('#btnBack').click(function(){  
+	    console.log("btnBack ");
+	    page('/');  
+	}); 
+
 	$('#btnRegistarseRegistro').on('click', submitForm);
 	$('#passwordRegistro').on('keypress', function(e) {
 	    if (e.keyCode === 13) {

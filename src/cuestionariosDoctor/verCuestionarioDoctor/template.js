@@ -1,8 +1,8 @@
 var yo = require('yo-yo');    
 
 var login= yo`
-    <div id = "containerVerCuestionarioContent" >
-      <div id = "containerVerCuestionario" class="container z-depth-4"">
+    <div id = "containerTipo2" >
+      <div id = "containerTipo1Interno" class="container z-depth-4"">
          <div id="tableCuestionarios" class="row">
            <h5 id="verCuestionarioTitulo" class= "titulo" >Cuestionario 2 (12-12-12)</h5>
            <h5 id="verCuestionarioNota" class="right-align notaCuestionario">Nota:85</h5> 

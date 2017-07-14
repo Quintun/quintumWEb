@@ -15,26 +15,15 @@ page('/perfilO2Doctor',function(ctx,next){
 	$('#btnCrearPerfilO2').click(function(){
 	    var nombre 		= $('#perfilNombre').val();  
 	    var descripcion = $('#perfilDescripcion').val();   
-	    var fecha 		= $('#perfilO2FechaPicker').val();  
-	    var hora 		= $('#timepicker').val();  
+	  
 	    console.log("Crear perfilO2");
 	    console.log("nombre: "+ nombre);
 	    console.log("descripcion:"+descripcion);
-	    console.log("fecha:"+fecha);
-	    console.log("hora:"+hora);
+	
 	   	
 	});
 
-	$('#perfilO2FechaPicker').pickadate({
-	    selectMonths: true, // Creates a dropdown to control month
-	    selectYears: 15 // Creates a dropdown of 15 years to control year
-	});
-
-	$('#timepicker').pickatime({
-	    autoclose: false,
-	    twelvehour: false,
-	    default: '14:20:00'
-	});  
+	
 
 	$('#btnBack').click(function(){  
 	    console.log("btnBack ");

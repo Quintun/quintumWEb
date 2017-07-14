@@ -1,8 +1,8 @@
 var yo = require('yo-yo');    
 
 var login= yo`
-    <div id = "containerPasswordContent" class="valign-wrapper" >
-      <div id = "containerPassword" class="container z-depth-4"">
+    <div id = "containerTipo1" class="valign-wrapper" >
+      <div id = "containerTipo1Interno" class="container z-depth-4">
         <div class="row">
           <p>Ingresa tu email y haz click en “Enviar”. El Sistema te enviará un mensaje, con un link para modificar tu contraseña.</p>
           <form id="reg-form">

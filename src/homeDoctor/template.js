@@ -1,7 +1,7 @@
 var yo = require('yo-yo');    
 
 var login= yo`
-  <div id = "containerHomeContent">
+  <div id = "containerTipo2">
     <div  class="row">
         <div id="colBusqueda" class=" col s12">
           <div id = "containerBusqueda" class="container ">
@@ -12,16 +12,16 @@ var login= yo`
                    </div>
                  </div> 
                  <div  class="col s6 m2 center-align">
-                    <a id = "buscarBtnHome" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
+                    <a id = "buscarBtnHome" class="btn-floating btn-large"><i class="material-icons">search</i></a>
                  </div> 
                   <div class="col s6 m2 center-align">
-                    <a id = "perfilO2BtnHome" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">assignment_ind</i></a>
+                    <a id = "perfilO2BtnHome" class="btn-floating btn-large"><i class="material-icons">assignment_ind</i></a>
                  </div>  
             </div>
           </div>
         </div>
         <div id="colFiltros" class=" col s12">
-            <div id = "containerFiltros" class="container z-depth-4"> 
+            <div id = "containerTipo1Interno" class="container z-depth-4"> 
               <div id = "filtros" class="row">
                   <div class="col s12">
                     <h5 class="titulo">Filtros</h5>
@@ -45,13 +45,13 @@ var login= yo`
                    
                   </div>
                   <div  class="col s10 m3 offset-s1 offset-m1">
-                    <a id= "filtrarBtnHome" class="waves-effect waves-light btn-large  z-depth-4">Filtar</a>    
+                    <a id= "filtrarBtnHome" class="btn-large  z-depth-4">Filtar</a>    
                   </div>  
               </div> 
             </div>
         </div>
         <div id="colResultados" class=" col s12">
-            <div id = "containerResultados" class="container z-depth-4">
+            <div id = "containerTipo1Interno" class="container z-depth-4">
               <div id = "resultadosFormato" class="row">
                 <div class="col s12">
                   <h5 class="titulo">Resultados</h5>
@@ -80,19 +80,19 @@ var login= yo`
                 <div id= "tableCol" class="col s12">
                   <table class = "striped responsive-table"  id ="tableResultados">
                   <thead>
-                    <tr>
+                    <tr id="row0">
                         <th>
                           <p>
                             <input type="checkbox" id="checkboxAll" />
                             <label for="checkboxAll"></label>
                           </p>
                         </th>
-                        <th>Nombre</th>
-                        <th>Rut</th>
-                        <th>Turno</th>
-                        <th>Oxigenación</th>
-                        <th>Pabellón</th>
-                        <th>Room</th>
+                        <th>Nombre<i id="sortImg" class="material-icons">swap_vert</i></th>
+                        <th>Rut<i id="sortImg" class="material-icons">swap_vert</i></th>
+                        <th>Turno<i id="sortImg" class="material-icons">swap_vert</i></th>
+                        <th>Oxigenación<i id="sortImg" class="material-icons">swap_vert</i></th>
+                        <th>Pabellón<i id="sortImg" class="material-icons">swap_vert</i></th>
+                        <th>Room<i id="sortImg" class="material-icons">swap_vert</i></th>
                     </tr>
                   </thead>
 
@@ -145,8 +145,8 @@ var login= yo`
                  <div class="col s12">
                   <ul class="pagination">
                     <li class="waves-effect"><a href="#!">1-10 of 100</a></li>
-                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="disabled"><a href="#!"><i id = "chvLeft" class="material-icons">chevron_left</i></a></li>
+                    <li class="waves-effect"><a href="#!"><i id = "chvRight" class="material-icons">chevron_right</i></a></li>
                   </ul>
                 </div> 
             </div> 

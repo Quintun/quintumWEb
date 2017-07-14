@@ -3,6 +3,7 @@ var yo = require('yo-yo');
 var empty = require('empty-element');
 var template = require('./template');
 var templateHeader = require('../headerDoctorEmpty/template');
+var templateFooter = require('../footerDoctor/template'); 
 var request = require('superagent');
 
 var usernameServer, passwordServer;
@@ -10,10 +11,11 @@ var usernameServer, passwordServer;
 page('/',login, function(ctx,next){
 	var main = document.getElementById('main-container');
 	var header = document.getElementById('header-container');
+	var footer = document.getElementById('footer-container');
 	var el = templateHeader('');
 	empty(header).appendChild(el);
 	empty(main).appendChild(template);
-
+	empty(footer).appendChild(templateFooter(''));
 	console.log("login page");
 
 
@@ -31,12 +33,18 @@ page('/',login, function(ctx,next){
 	       localStorage.setItem("Username",usernameTxt);
 	       localStorage.setItem("Password",passwordTxt);
 	       page('/homeAdmin');
-	      }else if((usernameTxt == "karen") && (passwordTxt == "brenda")){
+	      }else if((usernameTxt == "doctor") && (passwordTxt == "doctor")){
 	       // window.location='/home';
 	       console.log("local Storage");
 	       localStorage.setItem("Username",usernameTxt);
 	       localStorage.setItem("Password",passwordTxt);
 	       page('/homeDoctor');
+	      }else if((usernameTxt == "adminTabla") && (passwordTxt == "adminTabla")){
+	       // window.location='/home';
+	       console.log("local Storage");
+	       localStorage.setItem("Username",usernameTxt);
+	       localStorage.setItem("Password",passwordTxt);
+	       page('/verTabla');
 	      }else{
 	        alert("Usuario Invalido");
 	      }

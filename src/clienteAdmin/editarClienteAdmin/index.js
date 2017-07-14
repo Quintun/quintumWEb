@@ -7,13 +7,20 @@ var request = require('superagent');
 
 var json, jsonObj;
 
-page('/editarClienteAdmin',load,function(ctx,next){
+page('/crearClienteAdmin',function(ctx,next){
 	var main = document.getElementById('main-container');
 	var header = document.getElementById('header-container');
-	var el = templateHeader('Monte');
+	var el = templateHeader('Crear Cliente');
 	empty(header).appendChild(el);
 	empty(main).appendChild(template);
 	console.log("ficha Medica page");
+
+	$('#btnBack').click(function(){  
+	    console.log("btnBack ");
+	    page('/homeDoctor');  
+	}); 
+
+	/*
 	$('#fichaMedicaBtnCuestionario').click(function(){
 	    console.log("btn cuestionarios");
 	    setTimeout(function () {
@@ -50,9 +57,10 @@ page('/editarClienteAdmin',load,function(ctx,next){
 	});
 
 
+
 	$(document).ready(function(){
 	    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-		$("#fichaNombre").text(jsonObj.name);
+	$("#fichaNombre").text(jsonObj.name);
 		$("#fichaRut").text(jsonObj.rut);
 		$("#fichaNacionalidad").text(jsonObj.nationality);
 		$("#fichaSexo").text(jsonObj.sexo);
@@ -64,8 +72,11 @@ page('/editarClienteAdmin',load,function(ctx,next){
 		$("#fichaRoomTitle").text(jsonObj.room);
 
 	});
+	*/
 
 })
+
+
 
 function load(ctx, next) {
     request

@@ -7,10 +7,10 @@ var request = require('superagent');
 
 var url, description, title, subTitle;
 
-var titlePlot1, titlePlot2, titlePlot3;
-var titleXAxisPlot1, titleXAxisPlot2, titleXAxisPlot3;
-var titleYAxisPlot1, titleYAxisPlot2, titleYAxisPlot3;
-var dataPlot1, dataPlot2, dataPlot3;
+var titlePlot1, titlePlot2, titlePlot3, titlePlot4;
+var titleXAxisPlot1, titleXAxisPlot2, titleXAxisPlot3, titleXAxisPlot4;
+var titleYAxisPlot1, titleYAxisPlot2, titleYAxisPlot3, titleYAxisPlot4;
+var dataPlot1, dataPlot2, dataPlot3,  dataPlot4;
 
 page('/historianIqDoctor',load, loadPlot, function(ctx,next){
 	var main = document.getElementById('main-container');
@@ -36,6 +36,9 @@ page('/historianIqDoctor',load, loadPlot, function(ctx,next){
      drawBackgroundColor();
   });
 
+  $(window).resize(function() {
+    drawBackgroundColor();
+  });
 
   google.charts.load('current', {packages: ['corechart', 'line']});
   google.charts.setOnLoadCallback(drawBackgroundColor);
@@ -94,10 +97,29 @@ page('/historianIqDoctor',load, loadPlot, function(ctx,next){
         };
 
         var chart3 = new google.visualization.LineChart(document.getElementById('chart_div3'));
+
+        var data4 = new google.visualization.DataTable();
+        data4.addColumn('number', 'X');
+        data4.addColumn('number', titleYAxisPlot4[0]);
+
+        data4.addRows(dataPlot4);
+
+        var options4 = {
+          hAxis: {
+            title: titleXAxisPlot4
+          },
+          vAxis: {
+            title: titleYAxisPlot4
+          },
+          backgroundColor: 'transparent'
+        };
+
+        var chart4 = new google.visualization.LineChart(document.getElementById('chart_div4'));
     
         chart1.draw(data1, options1);
         chart2.draw(data2, options2);
         chart3.draw(data3, options3);
+        chart4.draw(data4, options4);
   }
 
 
@@ -132,15 +154,19 @@ function loadPlot(ctx, next) {
       titlePlot1 = jsonObj[0].title; 
       titlePlot2 = jsonObj[1].title;
       titlePlot3 = jsonObj[2].title;
+      titlePlot4 = jsonObj[3].title;
       titleXAxisPlot1 = jsonObj[0].titleXAxis;
       titleXAxisPlot2 = jsonObj[1].titleXAxis;
       titleXAxisPlot3 = jsonObj[2].titleXAxis;
+      titleXAxisPlot4 = jsonObj[3].titleXAxis;
       titleYAxisPlot1 = jsonObj[0].titleYAxis;
       titleYAxisPlot2 = jsonObj[1].titleYAxis;
       titleYAxisPlot3 = jsonObj[2].titleYAxis;
+      titleYAxisPlot4 = jsonObj[3].titleYAxis;
       dataPlot1 =  jsonObj[0].data;
       dataPlot2 =  jsonObj[1].data;
       dataPlot3 =  jsonObj[2].data;
+      dataPlot4 =  jsonObj[3].data;
       
       next();
 

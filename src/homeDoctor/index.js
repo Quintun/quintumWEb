@@ -5,7 +5,9 @@ var template = require('./template');
 var templateHeader = require('../headerDoctor/template');
 var request = require('superagent');
 
-var turno, pabellon, perfil, cuestionario, resultado
+var turno, pabellon, perfil, cuestionario, resultado;
+
+var flagOrdenNombre = false, flagOrdenRut= false, flagOrdenTurno= false, flagOrdenOxigenacion= false, flagOrdenPabellon = false, flagOrdenRoom= false;
 
 $.fn.center = function () {
 	   this.css("position","absolute");
@@ -26,7 +28,6 @@ page('/homeDoctor',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(c
 	    var valor = $('#buscarInput').val();   
 	    console.log("buscando: "+ valor);
 	    search();	
-	     
 	});
 
 	$('#btnBack').click(function(){  
@@ -46,7 +47,7 @@ page('/homeDoctor',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(c
 	      console.log('data: ');
 	      $("#tableResultados tbody").empty()
 	      for (var i = 0 ; i <= resultado.length-1 ; i++) {
-			console.log('nombre: '+resultado[i].nombre);
+			console.log('nombre: '+resultado[i].nombre + resultado[i].apellido);
 			console.log('rut: '+resultado[i].rut);
 			console.log('turno: '+resultado[i].turno);
 			console.log('oxigenacion: '+resultado[i].oxigenacion);
@@ -54,7 +55,7 @@ page('/homeDoctor',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(c
 			console.log('room: '+resultado[i].room);
 
 		    var newRowContent = "<th><p><input type=\"checkbox\" id=\"checkbox"+(i+1)+"\" /><label for=\"checkbox"+(i+1)+"\"></label></p></th>";
-		    newRowContent+= "<td>"+resultado[i].nombre+"</td>" ;
+		    newRowContent+= "<td>"+resultado[i].nombre +" "+resultado[i].apellido +"</td>" ;
 		    newRowContent+= "<td>"+resultado[i].rut+"</td>" ;
 		    newRowContent+= "<td>"+resultado[i].turno+"</td>"; 
 		    newRowContent+= "<td>"+resultado[i].oxigenacion+"</td>"; 
@@ -106,8 +107,6 @@ page('/homeDoctor',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(c
 	        $(this).val('');
 	});
 
-	
-
 	$(document).ready(function (){
 		$('input:text')
 		$('#filtrarBtnHome')
@@ -117,7 +116,7 @@ page('/homeDoctor',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(c
 		loadData();
         $('select').material_select();
 
-        $('#tableResultados').on('click', 'td', function() { // td not tr
+       $('#tableResultados').on('click', 'td', function() { // td not tr
         	var row = $(this).parents("tr").attr('id');
         	row = row.substring(3);
 		    var id = resultado[row-1].id;
@@ -126,18 +125,84 @@ page('/homeDoctor',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(c
 		    console.log('id: '+ id);
 		    console.log('nombre: '+nombre);
 		    
-		    localStorage.setItem("BuscarPersonaId",id);
+		    //localStorage.setItem("BuscarPersonaId",id);
+		  	//  page('/fichaMedicaDoctor');
 
+		});
+		
+       $('#tableResultados').on('click', 'th', function() {
+        var row = $(this).text();
+        console.log("Elemento: "+ row);
+        console.log("length:"+row.length)
+        if ( row == null ){
 
-		    page('/fichaMedicaDoctor');
+        }else {
+        	if (row == "Nombreswap_vert"){
+	        	if(flagOrdenNombre) {
+	        	 	flagOrdenNombre = false
+	        	 	resultado = resultado.sort(sortAscendApellido);
+	        	}else {
+	        	 	flagOrdenNombre = true
+	        	 	resultado = resultado.sort(sortDescendApellido);
+	        	}
+	        } else  if (row == "Rutswap_vert"){
+	        	if(flagOrdenRut) {
+	        	 	flagOrdenRut = false
+	        	 	resultado = resultado.sort(sortAscendRut);
+	        	}else {
+	        	 	flagOrdenRut = true
+	        	 	resultado = resultado.sort(sortDescendRut);
+	        	}
+	        }else  if (row == "Turnoswap_vert"){
+	        	if(flagOrdenTurno) {
+	        	 	flagOrdenTurno = false
+	        	 	resultado = resultado.sort(sortAscendTurno);
+	        	}else {
+	        	 	flagOrdenTurno = true
+	        	 	resultado = resultado.sort(sortDescendTurno);
+	        	}
+	        }else  if (row == "Oxigenaciónswap_vert"){
+	        	if(flagOrdenOxigenacion) {
+	        	 	flagOrdenOxigenacion = false
+	        	 	resultado = resultado.sort(sortAscendOxigenacion);
+	        	}else {
+	        	 	flagOrdenOxigenacion = true
+	        	 	resultado = resultado.sort(sortDescendOxigenacion);
+	        	}
+	        }else  if (row == "Pabellónswap_vert"){
+	        	if(flagOrdenPabellon) {
+	        	 	flagOrdenPabellon = false
+	        	 	resultado = resultado.sort(sortAscendPabellon);
+	        	}else {
+	        	 	flagOrdenPabellon = true
+	        	 	resultado = resultado.sort(sortDescendPabellon);
+	        	}
+	        }else  if (row == "Roomswap_vert"){
+	        	if(flagOrdenRoom) {
+	        	 	flagOrdenRoom = false
+	        	 	resultado = resultado.sort(sortAscendRoom);
+	        	}else {
+	        	 	flagOrdenRoom = true
+	        	 	resultado = resultado.sort(sortDescendRoom);
+	        	}
+			  
+	        }
+	        $("#tableResultados tbody").empty();
+	        for (var i = 0 ; i <= resultado.length-1 ; i++) {
+			    var newRowContent = "<th><p><input type=\"checkbox\" id=\"checkbox"+(i+1)+"\" /><label for=\"checkbox"+(i+1)+"\"></label></p></th>";
+			    newRowContent+= "<td>"+resultado[i].nombre +" "+resultado[i].apellido +"</td>" ;
+			    newRowContent+= "<td>"+resultado[i].rut+"</td>" ;
+			    newRowContent+= "<td>"+resultado[i].turno+"</td>"; 
+			    newRowContent+= "<td>"+resultado[i].oxigenacion+"</td>"; 
+			    newRowContent+= "<td>"+resultado[i].pabellon+"</td>";
+			    newRowContent+= "<td>"+resultado[i].room+"</td>";  
 
-		   //  page('/fichaMedica',loaddas);
- 			//page('/fichaMedica',function(ctx, next) {
-			 // console.log("junior")
-			//  next()
-			//})
-		    
-		  
+	            newRowContent= "<tr id=\"row"+(i+1)+"\""+">"+ newRowContent +"</tr>"; 
+			   
+			    $("#tableResultados tbody").append(newRowContent);	
+			  }
+        }
+        
 
 		});
 
@@ -145,12 +210,12 @@ page('/homeDoctor',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(c
 	});
 
 	function hide (){
-		$("#containerFiltros").hide();
+		$("#colFiltros").hide();
 		$("#colResultados").hide();
 	}
 	
 	function show(){
-		$("#containerFiltros").show();
+		$("#colFiltros").show();
 		$("#colResultados").show();
 	}
 
@@ -190,6 +255,77 @@ page('/homeDoctor',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(c
 			console.log("perfil:"+ perfil[i].perfil );
 			$("#itemPerfil").append($("<option></option>").attr("value",i+1).text(perfil[i].perfil))
 		}	
+	}
+
+	function sortAscendApellido(a, b){
+	  if (a.apellido < b.apellido) return -1;
+	  if (a.apellido > b.apellido) return 1;
+	  return 0;
+	}
+	function sortDescendApellido(a, b){
+	  if (a.apellido > b.apellido) return -1;
+	  if (a.apellido < b.apellido) return 1;
+	  return 0;
+	}
+	function sortAscendTurno(a, b){
+	  if (a.turno < b.turno) return -1;
+	  if (a.turno > b.turno) return 1;
+	  return 0;
+	}
+	function sortDescendTurno(a, b){
+	  if (a.turno > b.turno) return -1;
+	  if (a.turno < b.turno) return 1;
+	  return 0;
+	}
+	function sortAscendRut(a, b){
+	  if (a.rut < b.rut) return -1;
+	  if (a.rut > b.rut) return 1;
+	  return 0;
+	}
+	function sortDescendRut(a, b){
+	  if (a.rut > b.rut) return -1;
+	  if (a.rut < b.rut) return 1;
+	  return 0;
+	}
+	function sortAscendTurno(a, b){
+	  if (a.turno < b.turno) return -1;
+	  if (a.turno > b.turno) return 1;
+	  return 0;
+	}
+	function sortDescendTurno(a, b){
+	  if (a.turno > b.turno) return -1;
+	  if (a.turno < b.turno) return 1;
+	  return 0;
+	}
+	function sortAscendOxigenacion(a, b){
+	  if (a.oxigenacion < b.oxigenacion) return -1;
+	  if (a.oxigenacion > b.oxigenacion) return 1;
+	  return 0;
+	}
+	function sortDescendOxigenacion(a, b){
+	  if (a.oxigenacion > b.oxigenacion) return -1;
+	  if (a.oxigenacion < b.oxigenacion) return 1;
+	  return 0;
+	}
+	function sortAscendPabellon(a, b){
+	  if (a.pabellon < b.pabellon) return -1;
+	  if (a.pabellon > b.pabellon) return 1;
+	  return 0;
+	}
+	function sortDescendPabellon(a, b){
+	  if (a.pabellon > b.pabellon) return -1;
+	  if (a.pabellon < b.pabellon) return 1;
+	  return 0;
+	}
+	function sortAscendRoom(a, b){
+	  if (a.room < b.room) return -1;
+	  if (a.room > b.room) return 1;
+	  return 0;
+	}
+	function sortDescendRoom(a, b){
+	  if (a.room > b.room) return -1;
+	  if (a.room < b.room) return 1;
+	  return 0;
 	}
 
 })

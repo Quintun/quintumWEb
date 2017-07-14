@@ -24,10 +24,6 @@ page('/homeAdmin',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(ct
 	//main.append(menu('Menu'));
 	console.log("home page");
 
-	$('#menu').click(function(){
-	    console.log("menu");
-	    $('#menu2').trigger('click');
-	});
 
 	$('#buscarBtnHome').click(function(){
 	    var valor = $('#buscarInput').val();   
@@ -35,15 +31,46 @@ page('/homeAdmin',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(ct
 	   // search();
 	});
 
-	$('#btnExit').click(function(){
-	    console.log("btnMenuExit");  
-	    $('#itemMenuTituloLabel').trigger('click');
+	$('#menuMobile').click(function(){  
+	    console.log("menu Mobile");
+	   // search();
 	});
+
+	$('#menuWeb').click(function(){  
+	    console.log("menu Web ");
+	   // search();
+	});
+	
 
 	$('#homeAdminAdd').click(function(){
-	    console.log("btnAdd");
+		var check1 = $("#radio1").prop("checked");
+		var check2 = $("#radio2").prop("checked");
+
+		if (check1 && !check2){
+ 			console.log("btnAdd ");
+	    	page('/crearPacienteAdmin');
+		}else if (!check1 && check2){
+			console.log("btnAdd ");
+	    	page('/crearClienteAdmin');
+		}
 	});
 
+
+	$('#itemMenuListPabellonLayout').click(function(){
+	    console.log("PabellónLayout");
+	    page('/layoutAdmin')
+	});
+
+
+	$('#itemMenuListPlantas').click(function(){
+	    console.log("ListPlantas");
+	    page('/crearPlantaAdmin')
+	});
+
+	$('#itemMenuListRoom').click(function(){
+	    console.log("ListPiezas");
+	    page('/crearRoomAdmin')
+	});
 
 
 
@@ -119,10 +146,17 @@ page('/homeAdmin',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(ct
 	});
 
 	$(document).ready(function (){
-		$(".button-collapse").sideNav();
-	    $('#menu2').hide();
-	    $(".dropdown-button").dropdown();
+		
+		$('.button-collapse').sideNav({
+			  menuWidth: 300, // Default is 240
+			  closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+			}
+		);
+	  	$('.collapsible').collapsible();
 
+	   /* $('#menu2').hide();*/
+	    $(".dropdown-button").dropdown();
+	    $("#radio1").prop("checked", true); 
 		$('input:text')
 		$('#filtrarBtnHome')
 		$('#perfilO2BtnHome')
@@ -142,16 +176,7 @@ page('/homeAdmin',loadPerfil,loadTurno,loadPabellon,loadCuestionario,function(ct
 		    
 		    localStorage.setItem("BuscarPersonaId",id);
 
-
 		    page('/fichaMedicaDoctor');
-
-		   //  page('/fichaMedica',loaddas);
- 			//page('/fichaMedica',function(ctx, next) {
-			 // console.log("junior")
-			//  next()
-			//})
-		    
-		  
 
 		});
 

@@ -20,6 +20,10 @@ page('/reestablecer',function(ctx,next){
 	        $(this).val('');
 	});
 
+	$('#btnBack').click(function(){  
+	    console.log("btnBack ");
+	    page('/');  
+	}); 
 
 	$(document).ready(function(){
 	    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
