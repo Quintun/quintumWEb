@@ -1,6 +1,6 @@
-## Proyecto Oxyplus
+## Proyecto IQ Administración Web
 
-El proyecto es un sitio web que contiene los perfiles para administrar el equipo Oxyplus.
+El proyecto es un sitio web que contiene los perfiles para administrar un equipo de generación de oxígeno suplementario.
 
 ## Requerimientos
 Requiere installar NodeJs.
